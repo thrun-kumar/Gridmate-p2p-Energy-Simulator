@@ -1,0 +1,336 @@
+<USER_REQUEST>
+# SolarShare Upgrade: Grid-Connected Peer-to-Peer Energy Trading
+
+## Project Context
+
+Project: SolarShare — Peer-to-Peer Energy Trading Simulator  
+Track: Clean Energy and Green Technology — UN SDG 7  
+Current local application: http://localhost:5000
+
+I have an existing operational SolarShare application with a Node.js backend, a vanilla HTML5/ES6 frontend served from `client/index.html`, local JSON persistence under `server/data/`, user authentication, seller and buyer dashboards, automated order generation, a Continuous Double Auction (CDA), dynamic price recommendations, transaction settlement, a SHA-256-linked transaction ledger, and a tamper-testing interface.
+
+The project also contains an unbundled React/Vite directory. Do not assume it is the active frontend. Inspect the existing entry point and preserve the currently working application.
+
+I have also provided `solarshare_transaction_ledger_2026-10-14.csv`. Analyze its columns, existing transaction records, settlement fields, hash linkage, pricing, and savings calculations before changing the data model.
+
+## PRIMARY OBJECTIVE
+
+Upgrade SolarShare from a household-focused peer-to-peer energy trading simulator to a grid-connected P2P energy marketplace.
+
+The key business rule is:
+
+**Only the seller needs a solar installation to generate and sell solar surplus. A buyer can be an ordinary household, apartment, shop, office, factory, or other eligible grid-connected consumer without any solar panels.**
+
+The seller exports surplus energy into the shared electricity grid. The buyer obtains electricity through their existing grid connection. SolarShare matches their energy quantities contractually and calculates the associated financial settlement.
+
+Support buyers and sellers in different network zones, including distant participants, provided the simulated network connection, transfer capacity, and configurable trading rules permit the transaction.
+
+Do not claim that specific electrons travel directly from a particular seller to a particular buyer. The system must distinguish commercial energy allocation from physical electricity flow.
+
+## PHASE 1 — AUDIT BEFORE MODIFYING
+
+1. Inspect the actual backend entry point, frontend entry point, API routes, services, simulation engine, order matching engine, authentication, persistence, and existing automated tests.
+2. Inspect the transaction CSV and identify existing fields that can be reused.
+3. Trace the complete existing flow:
+   - User registration and login.
+   - Household generation and consumption.
+   - Surplus and deficit calculations.
+   - Automatic order creation.
+   - Price recommendations.
+   - CDA matching and partial fills.
+   - Settlement calculations.
+   - Transaction ledger creation and verification.
+4. Identify where the current implementation assumes that buyers and sellers are similar household participants.
+5. Produce a concise audit of files to modify and potential backward-compatibility risks.
+6. Preserve existing working functionality and the current port 5000.
+7. Do not introduce MongoDB, PostgreSQL, Firebase, a new Python server, or unnecessary external dependencies.
+8. Do not replace the existing application with a new demo, mockup, or disconnected frontend.
+
+After the audit, implement the changes in the actual active codebase.
+
+## PHASE 2 — USER TYPES AND PARTICIPANT ELIGIBILITY
+
+Support these participant types:
+
+A. Solar Prosumer / Seller
+- Has a solar installation.
+- Has a generation profile and household or business consumption profile.
+- Can sell only the available surplus after accounting for their own consumption and any configured storage behavior.
+- Can view generation, self-consumption, exported energy, matched energy, unmatched surplus, earnings, and transaction history.
+
+B. Grid Consumer / Buyer
+- Does not need a solar panel.
+- Has an electricity connection, consumption profile, and energy demand.
+- Can purchase eligible energy through the marketplace.
+- Must be able to register, log in, view demand, view offers, see estimated prices, view matched energy, and inspect bills and savings.
+- Must never be rejected from the buyer role merely because they do not own solar panels.
+
+C. Optional Prosumer-Consumer
+- Has solar generation and household demand.
+- Automatically consumes generated power first according to the configured model.
+- May buy additional energy when demand exceeds available generation.
+- May sell surplus energy when generation exceeds consumption.
+
+D. Administrator / Grid Operator Simulation Role
+- Can inspect network zones, participant status, simulated grid capacity, trading limits, energy losses, charges, market clearing, settlements, and audit records.
+- Can configure simulation assumptions without bypassing normal authorization.
+
+Keep role permissions enforced by the backend, not just hidden frontend buttons.
+
+## PHASE 3 — ENERGY BALANCE AND SMART METER MODEL
+
+Implement or extend an hourly energy-balance model.
+
+For each solar participant:
+
+Available surplus = max(0, Solar Generation - Local Consumption - Other Configured Local Use)
+
+For each consumer:
+
+Energy deficit = max(0, Required Consumption - Available Local Generation)
+
+Use kWh for energy quantities and kW for instantaneous power or network capacity. Do not mix these units.
+
+Create or extend simulated meter records containing:
+- Participant ID.
+- Timestamp or simulation interval.
+- Generation, where applicable.
+- Consumption.
+- Available export.
+- Grid import.
+- Meter status.
+- Measurement source: SIMULATED or VERIFIED, as appropriate.
+
+Do not invent verified meter readings. All generated example readings must be labelled as simulated.
+
+Prevent selling more energy than available surplus and buying more than eligible demand or configured limits.
+
+## PHASE 4 — GRID-CONNECTED TRADING AND DISTANT PARTICIPANTS
+
+Introduce a configurable grid-network abstraction that supports multiple connected zones.
+
+Each participant should have:
+- A grid connection status.
+- A network zone or node.
+- An eligible trading status.
+- A simulated network capacity constraint.
+
+Each eligible network connection or route should support:
+- Origin zone and destination zone.
+- Connection status.
+- Transfer capacity.
+- Configurable delivery-loss percentage.
+- Configurable network or wheeling charge per kWh.
+- Applicable trading restrictions.
+
+These values are simulator assumptions, not claims about actual grid infrastructure.
+
+Support:
+1. Seller and buyer in the same zone.
+2. Seller and buyer in different zones.
+3. Distant trading between connected zones.
+4. Rejection or deferral of transactions when a route is disconnected, capacity is exhausted, or a configured rule prohibits the trade.
+5. Multiple transactions competing for limited network capacity.
+6. Partial fills when only part of a requested quantity can be accommodated.
+
+Maintain a clear distinction between:
+- Seller's metered energy injection.
+- Energy allocated to a matched trade.
+- Energy delivered or allocated to the buyer after modeled losses.
+- Residual energy handled by the configured grid settlement model.
+
+For an initial simulation, if a route has a loss fraction L and the buyer must receive Q kWh, the required injection is Q / (1 - L). Reject invalid loss fractions and handle insufficient seller surplus.
+
+Document the exact convention used. Do not silently deduct losses twice or claim physical power-flow calculations when the application only performs accounting simulation.
+
+Use network-aware allocation or a documented deterministic capacity-allocation policy. Never promise unlimited long-distance delivery.
+
+## PHASE 5 — AUTOMATED PRICING AND CDA
+
+Preserve the existing automated market model.
+
+- Calculate a demand-pressure-based recommended price using the current configured price floor and ceiling.
+- Keep recommended prices distinct from seller asks, buyer bids, and executed clearing prices.
+- Continue price-time priority for eligible orders.
+- Preserve partial fills and remaining quantities.
+- Apply the existing midpoint clearing rule only where the order-matching rules permit a trade.
+- Enforce configured price limits and validate quantities.
+- Keep manual bidding optional for advanced users; normal users must be able to rely on automatic recommendations and automatic order generation.
+- Do not execute trades solely because two participants exist. Check price compatibility, energy availability, demand, network eligibility, and capacity.
+- Avoid matching the same energy twice.
+- Ensure a buyer without panels can submit demand and participate in the same marketplace as solar sellers.
+
+If network charges or delivery losses are modeled, explicitly document whether they affect the clearing price, buyer charge, seller payout, or separate network settlement. Do not conceal charges inside the energy price.
+
+## PHASE 6 — TRANSPARENT FINANCIAL SETTLEMENT
+
+Preserve the configured utility benchmark of ₹8.00/kWh, feed-in benchmark of ₹2.00/kWh, and ₹0.20/kWh platform fee unless the existing configuration establishes different values.
+
+Make all assumptions configurable and label them as simulation benchmarks, not actual regulated tariffs.
+
+For each transaction, calculate and display separately:
+- Matched energy quantity.
+- Seller's ask price.
+- Buyer's bid price.
+- Energy clearing price.
+- Gross energy value.
+- Modeled delivery losses.
+- Network or wheeling charges.
+- Platform fee.
+- Seller net proceeds.
+- Buyer's total energy and delivery charge.
+- Comparable utility-bill baseline.
+- Buyer's estimated savings.
+- Settlement status.
+
+Use one documented financial convention consistently. State whether the platform fee is paid by the seller, the buyer, or both. Do not count the same fee twice.
+
+For example, if a seller asks ₹4/kWh and a buyer bids ₹6/kWh, the eligible midpoint clearing price is ₹5/kWh before any separately modeled charges.
+
+If the platform fee is ₹0.20/kWh on settled trades, a 10 kWh trade generates ₹2 in gross platform-fee revenue. This is not net company profit.
+
+Buyer savings must be calculated against an explicitly defined comparable baseline and must include applicable charges. Do not claim positive savings if the final buyer cost exceeds the comparison baseline.
+
+Account for unfilled orders, canceled orders, invalid settlements, and failed settlement attempts.
+
+## PHASE 7 — USER INTERFACE
+
+Extend the actual existing interface, maintaining its current visual theme and navigation.
+
+Seller dashboard:
+- Solar generation.
+- Local consumption.
+- Available surplus.
+- Exported energy.
+- Matched and unmatched quantities.
+- Gross revenue, fees, and net earnings.
+- Grid zone and export capacity.
+- Transaction history.
+
+Buyer dashboard:
+- Clearly display “No solar panels required”.
+- Electricity demand and consumption.
+- Available marketplace supply.
+- Estimated energy price.
+- Energy matched and remaining demand.
+- Network charges and modeled losses.
+- Total estimated bill.
+- Comparable utility baseline and estimated savings.
+- Grid zone and connection status.
+- Purchase history.
+
+Marketplace:
+- Show seller, available quantity, ask price or recommended price, grid zone, and eligibility.
+- Show buyer demand, bid or recommended price, and network eligibility where appropriate.
+- Show whether the trade is local or cross-zone.
+- Explain why an order cannot be matched when capacity, price, eligibility, or network connectivity prevents a trade.
+- Never expose passwords, bearer tokens, or other private authentication data.
+
+Administrator:
+- Show network-zone status, capacity utilization, energy allocation, loss assumptions, charges, settled trades, and revenue.
+- Distinguish simulated results from verified real-world measurements.
+
+Keep the existing responsive interface and all currently functioning dashboards.
+
+## PHASE 8 — DATA MODEL AND LEDGER COMPATIBILITY
+
+Extend the existing JSON persistence and transaction schema rather than discarding the current data.
+
+Add appropriate fields where required:
+- Seller and buyer participant types.
+- Seller and buyer network zones.
+- Origin and destination network nodes.
+- Requested quantity, matched quantity, and buyer-received allocation.
+- Modeled loss quantity.
+- Network charges.
+- Platform fee and fee payer.
+- Seller gross and net proceeds.
+- Buyer total charge and savings baseline.
+- Settlement status and failure reason.
+- Simulation identifier.
+- Meter-record references.
+- Hash-chain metadata.
+
+Retain existing transaction IDs and historical records. If a migration is necessary, create a backward-compatible migration or versioned schema. Do not fabricate missing historical network or meter data.
+
+Keep the SHA-256-linked ledger and existing tamper simulation. Ensure new transaction fields are included in the documented canonical hash input, and verify historical records using their original hash format where applicable.
+
+Add tests for ledger verification after new transactions, tampering, and migration of old records.
+
+Treat the CSV as historical evidence, not as a replacement for the application's actual database or source code.
+
+## PHASE 9 — SECURITY, VALIDATION, AND TESTING
+
+Inspect and preserve existing authentication, salted PBKDF2 password hashing, authorization, session handling, and input validation.
+
+Add automated tests for:
+1. A solar seller exporting valid surplus.
+2. An ordinary buyer with no solar installation purchasing energy.
+3. A consumer whose demand exceeds available market supply.
+4. Local-zone trading.
+5. Cross-zone trading.
+6. Distant trading over a configured connected route.
+7. A disconnected route.
+8. Insufficient transfer capacity.
+9. Modeled transmission losses.
+10. Network and platform fee calculations.
+11. Buyer savings against the defined utility baseline.
+12. Seller net proceeds.
+13. Partial fills and remaining quantities.
+14. Duplicate-energy prevention.
+15. Invalid or excessive quantities.
+16. Invalid prices and loss percentages.
+17. Failed and canceled settlements.
+18. Hour advancement and automatic order regeneration.
+19. Ledger integrity and tampering.
+20. Authentication and role-based authorization.
+21. Backward compatibility with historical records.
+22. Repeated simulation runs and reset behavior.
+
+Run the existing automated test suite and the new tests. Fix regressions instead of merely documenting them.
+
+Check numerical operations, missing fields, invalid input, and frontend rendering so that undefined values do not cause `.toFixed()` crashes.
+
+## PHASE 10 — DOCUMENTATION AND FINAL REPORT
+
+Update the actual project documentation with:
+- Updated architecture.
+- Participant roles.
+- Grid-connected trading workflow.
+- Energy and settlement formulas.
+- Pricing and fee assumptions.
+- Network-zone and capacity model.
+- Ledger integrity design.
+- Known limitations.
+- Test results.
+- Startup instructions.
+- Demo instructions for a solar seller and a buyer without panels.
+
+Explicitly document that real-world deployment would require appropriate utility participation, metering, network access, regulatory approval, and compliant financial settlement.
+
+Do not describe the simulator as a live electricity exchange or claim that the platform physically routes individual electrons to named buyers.
+
+## ACCEPTANCE CRITERIA
+
+The upgrade is complete only when:
+
+1. A seller with solar panels can sell eligible surplus.
+2. A buyer without solar panels can register, log in, and purchase eligible energy.
+3. A buyer can purchase from a seller in a different configured network zone.
+4. A disconnected route or exhausted network capacity correctly prevents or limits a trade.
+5. Energy losses, network charges, platform fees, seller proceeds, and buyer savings are calculated consistently.
+6. Existing authentication, dashboards, automated pricing, CDA, partial fills, JSON persistence, and ledger verification still work.
+7. Historical transactions remain readable.
+8. All relevant tests pass.
+9. The application continues to run on port 5000 without requiring a new external database or separate Python server.
+10. The final response lists the files changed, tests executed and their actual results, limitations, and exact demonstration steps.
+
+## EXECUTION INSTRUCTIONS
+
+Start by inspecting the real codebase and existing CSV. Then implement the upgrade in the existing application. Do not stop after producing a plan, mockup, or sample code.
+
+Do not claim a feature works unless it has been implemented and tested. If any test fails or any requirement cannot be completed, report it explicitly and explain what remains unfinished.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-15T00:41:51+05:30.
+</ADDITIONAL_METADATA>

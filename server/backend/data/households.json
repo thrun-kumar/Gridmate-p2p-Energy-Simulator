@@ -1,0 +1,112 @@
+[
+  {
+    "id": "HH-01",
+    "name": "Green Meadows Villa",
+    "solarCapacityKW": 10,
+    "role": "prosumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 5000,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-02",
+    "name": "Apex Tech Park Office",
+    "solarCapacityKW": 0,
+    "role": "consumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 15000,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-03",
+    "name": "Sunshine Heights Society",
+    "solarCapacityKW": 8,
+    "role": "prosumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 4200,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-04",
+    "name": "Riverdale Residential",
+    "solarCapacityKW": 0,
+    "role": "consumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 3500,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-05",
+    "name": "Banyan Grove Home",
+    "solarCapacityKW": 0,
+    "role": "consumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 4000,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-06",
+    "name": "Pinnacle Duplex Villa",
+    "solarCapacityKW": 6,
+    "role": "prosumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 3800,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-07",
+    "name": "Metro St. Jude Clinic",
+    "solarCapacityKW": 0,
+    "role": "consumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 9000,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-08",
+    "name": "EcoVibe Smart Residency",
+    "solarCapacityKW": 4,
+    "role": "prosumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 3200,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-09",
+    "name": "Blue Ridge Cottage",
+    "solarCapacityKW": 0,
+    "role": "consumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 2900,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  },
+  {
+    "id": "HH-10",
+    "name": "CyberHub Co-working",
+    "solarCapacityKW": 0,
+    "role": "consumer",
+    "autoTradeEnabled": true,
+    "minimumAcceptedPrice": null,
+    "maximumAcceptedPrice": null,
+    "walletBalance": 11000,
+    "createdAt": "2026-10-14T00:00:00.000Z"
+  }
+]

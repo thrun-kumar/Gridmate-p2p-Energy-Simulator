@@ -1,0 +1,24 @@
+{
+  "name": "gridmate-server",
+  "version": "1.0.0",
+  "description": "GRIDMATE - Peer-to-Peer Energy Trading Simulator Backend",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/tests/grid_connected_trading.test.js",
+    "test:all": "node src/tests/simulation.test.js && node src/tests/automated_trading.test.js && node src/tests/grid_connected_trading.test.js",
+    "test:grid": "node src/tests/grid_connected_trading.test.js",
+    "test:auto": "node src/tests/automated_trading.test.js",
+    "test:sim": "node src/tests/simulation.test.js"
+  },
+  "keywords": [
+    "clean-energy",
+    "p2p-trading",
+    "energy-market",
+    "cryptographic-ledger",
+    "simulation"
+  ],
+  "author": "GRIDMATE Core Team",
+  "license": "MIT"
+}

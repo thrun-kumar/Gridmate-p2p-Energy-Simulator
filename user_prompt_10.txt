@@ -1,0 +1,558 @@
+<USER_REQUEST>
+  SolarShare — Complete Working Marketplace, Real-Time Simulation, Dataset and UI/UX Upgrade
+
+1. Main objective
+
+Upgrade my existing SolarShare application into a fully working, user-friendly peer-to-peer solar electricity marketplace.
+
+The current application has pages for the dashboard, marketplace, participants, pricing and rules, transaction ledger, analytics, and seller savings. However, the application is difficult for ordinary people to understand, several actions do not produce a clear result, and some charts and dashboard sections have little or no meaningful data.
+
+I want the application to demonstrate the entire process:
+
+1. Solar households generate electricity.
+2. Each household consumes the electricity it needs.
+3. Households with extra electricity offer their surplus for sale.
+4. The marketplace automatically calculates a recommended price based on simulated time, demand, supply, and season.
+5. Buyers without solar panels can browse available offers and purchase eligible electricity.
+6. The system matches buyers and sellers automatically.
+7. Seller earnings and buyer savings update after a successful transaction.
+8. Every completed transaction appears in the transaction ledger.
+9. Analytics charts and participant dashboards update using the same transaction data.
+10. The administrator can control the simulation, review pricing rules, and monitor the entire marketplace.
+
+This must be an interactive working demonstration, not a collection of static cards.
+
+Important: Modify my existing project. Do not create an unrelated replacement application.
+
+2. Inspect the existing project before making changes
+
+Inspect the existing codebase, current frontend, backend, routes, pricing engine, matching engine, participant data, simulation clock, persistence layer, transaction ledger, and charts.
+
+Preserve the existing application framework, working features, login system, and port 5000.
+
+Do not reset existing user data or delete historical transactions without authorization.
+
+Reuse existing implementations where possible. Fix non-working buttons and incomplete data flows instead of merely redesigning their appearance.
+
+Before finishing, test every role and the complete transaction workflow.
+
+3. Implement three separate user roles
+
+A. Admin / Grid Operator
+
+The admin manages the simulation and marketplace.
+
+Admin-only features:
+
+- Control simulated time.
+- Start and pause automatic simulation.
+- Advance the simulation by one hour.
+- Run the complete 24-hour demonstration.
+- Reset the demo to a clean initial state after confirmation.
+- Manage participant eligibility.
+- View all seller offers and buyer purchases.
+- Configure illustrative pricing parameters and rule limits.
+- View price calculations and explanations.
+- Review rejected offers and seller price-review requests.
+- View all transaction records.
+- Verify transaction-ledger integrity.
+- View marketplace-wide energy, savings, revenue, and charts.
+- Export the demonstration report and transaction CSV.
+
+Do not expose administrative controls to ordinary buyers and sellers.
+
+B. Seller / Solar Household
+
+The seller must have a simple dashboard.
+
+Display:
+
+- Solar electricity generated during the current simulated interval.
+- Household consumption.
+- Available surplus in kWh.
+- Electricity already committed to active offers.
+- Electricity available for new offers.
+- Recommended selling price per kWh.
+- Expected gross revenue and estimated fees.
+- Completed sales and net earnings.
+- Price-review requests and their statuses.
+- Recent transactions.
+
+Provide these working actions:
+
+1. Sell Surplus Electricity
+2. Accept Recommended Price
+3. View Price Explanation
+4. Request Price Review
+5. View My Sales
+
+When the seller publishes an offer, it must appear in the buyer marketplace immediately if the offer is valid and eligible.
+
+Prevent a seller from offering more electricity than the household actually has available.
+
+If surplus is zero, disable the selling button and clearly explain why. Do not display fake available electricity simply to make the interface look active.
+
+C. Buyer / Consumer Household
+
+Buyers do not need solar panels.
+
+Provide a simple marketplace with available electricity offers.
+
+Each offer should show:
+
+- Seller household name.
+- Seller type, such as residential home or commercial building.
+- Available energy in kWh.
+- Total estimated cost per kWh.
+- Applicable additional charges.
+- Total price for the selected quantity.
+- Estimated savings compared with the configured baseline.
+- Offer availability and expiry.
+
+Provide these actions:
+
+1. View Offer
+2. Choose Quantity
+3. Buy Electricity
+4. View Purchase Confirmation
+5. View My Purchases
+6. View My Savings
+
+Do not require buyers to enter bids or sellers to understand auction terminology.
+
+After a successful purchase, show the seller, buyer, energy quantity, price, total amount, savings estimate, and transaction ID.
+
+If the requested quantity is unavailable, explain the limitation and allow the buyer to choose a smaller quantity.
+
+Buyers must see only their own purchases and relevant marketplace information, not the full administrative ledger.
+
+4. Use a meaningful demonstration dataset
+
+Create a deterministic initial demonstration dataset containing at least 12 households, with a mixture of solar sellers and consumers.
+
+Suggested participants:
+
+ID| Household| Role| Solar capacity
+HH-01| Green Meadows Villa| Seller| 10 kW
+HH-02| Apex Tech Park| Buyer| 0 kW
+HH-03| Sunshine Heights| Seller| 8 kW
+HH-04| Riverdale Residential| Buyer| 0 kW
+HH-05| Banyan Grove Home| Buyer| 0 kW
+HH-06| Pinnacle Duplex| Seller| 6 kW
+HH-07| Metro St. Jude Clinic| Buyer| 0 kW
+HH-08| EcoVibe Smart Residency| Seller| 4 kW
+HH-09| Lotus Garden Homes| Seller| 5 kW
+HH-10| Central Market Complex| Buyer| 0 kW
+HH-11| Sunrise Apartments| Seller| 12 kW
+HH-12| Community Learning Centre| Buyer| 0 kW
+
+These are fictional demonstration participants.
+
+For each household, maintain a consistent data record containing:
+
+- Household ID and display name.
+- Participant role.
+- Solar capacity.
+- Simulated generation profile.
+- Consumption profile.
+- Available surplus or unmet demand.
+- Current wallet balance or illustrative settlement balance.
+- Published offers.
+- Completed purchases and sales.
+- Applicable transaction charges.
+- Savings and revenue totals.
+- Connection and eligibility status.
+
+Generate realistic, deterministic hourly solar-generation and consumption profiles for all 24 hours.
+
+Solar generation should normally be zero overnight, rise in the morning, peak around midday, and decline toward sunset. Include configurable cloudy and sunny periods.
+
+Consumption should vary by household type. Residential consumption may increase in the morning and evening, while offices and commercial buildings may have higher daytime demand.
+
+Make sure each hourly profile is consistent with the household's solar capacity and does not generate physically impossible amounts of energy.
+
+Use a fixed random seed or predefined sample profiles so the same initial simulation produces reproducible results.
+
+Store the seed dataset in the existing persistence format or an appropriate existing data module. Do not introduce a new database unless the current architecture genuinely requires one.
+
+5. Simulated real-time clock
+
+The application must have a clear simulated clock.
+
+Display:
+
+- Simulated date.
+- Current simulated time.
+- Current simulation hour.
+- Current season or configured weather profile.
+- Simulation status: Running or Paused.
+
+Provide two modes.
+
+Automatic mode
+
+When the admin presses Start Simulation, simulated time advances automatically.
+
+Use a configurable demonstration speed, such as one simulated hour every 10 seconds.
+
+The speed must be configurable by the admin.
+
+The simulation must not depend on the browser being manually refreshed.
+
+Manual mode
+
+Allow the admin to advance the simulation by exactly one hour.
+
+This mode is important for explaining the system during a college presentation.
+
+Full-day mode
+
+The admin can run the complete 24-hour simulation.
+
+Show a progress indicator such as:
+
+Simulation progress: 8 / 24 hours.
+
+At every simulated hour, update:
+
+- Solar generation.
+- Household consumption.
+- Available seller surplus.
+- Buyer demand.
+- Active offer quantities.
+- Recommended electricity price.
+- Marketplace matching results.
+- Seller earnings.
+- Buyer savings.
+- Energy traded.
+- Analytics charts.
+- Transaction history.
+
+Use one shared simulation state across the application.
+
+Do not implement independent clocks on different pages.
+
+When the admin changes the simulated hour, every relevant page must display data for that same hour.
+
+Prevent duplicate transactions if the user refreshes the page or starts the simulation more than once.
+
+6. Dynamic electricity pricing
+
+Replace confusing bidding controls with a transparent automatic pricing system.
+
+The recommended price should depend on:
+
+- Simulated time.
+- Available solar surplus.
+- Total eligible buyer demand.
+- Configured seasonal or weather conditions.
+- Applicable pricing-rule configuration.
+- Configured minimum and maximum price limits.
+
+Use a documented, configurable formula such as:
+
+Recommended price = clamp(
+Base price
+
++ Demand adjustment
++ Time adjustment
++ Seasonal adjustment,
+  Configured minimum,
+  Configured maximum
+  )
+
+Explain the formula in plain language.
+
+Example demonstration:
+
+Simulated condition| Example price
+Midday, abundant solar supply| ₹3.50/kWh
+Afternoon, balanced supply and demand| ₹4.20/kWh
+Evening, high demand and low solar generation| ₹5.50/kWh
+
+These are illustrative sample prices, not official tariffs.
+
+The actual calculated price must be determined by the configured formula and its inputs. Do not hardcode the displayed values independently of the pricing engine.
+
+Display an explanation whenever the recommended price changes.
+
+Examples:
+
+- "The price decreased because more solar electricity became available."
+- "The price increased because demand is higher than available solar supply."
+- "The price remained stable because supply and demand are balanced."
+
+Record the price, simulated hour, calculation inputs, and active rule version.
+
+Regulatory transparency
+
+Keep demo pricing parameters separate from verified official regulations.
+
+If official regulatory requirements have not been verified, label them "Simulation rules — pending regulatory verification."
+
+Never represent an illustrative minimum, maximum, feed-in price, or retail tariff as an official government-approved value.
+
+A real-world implementation must respect applicable electricity regulations, utility arrangements, metering requirements, and permissions.
+
+7. Implement a real working marketplace
+
+The marketplace is the place where available electricity is listed and purchases are matched.
+
+It is not just a chart or information page.
+
+Show eligible offers sorted by the lowest estimated total buyer cost.
+
+For every offer, show the seller, available kWh, energy price, additional charges, and estimated total for common purchase quantities.
+
+When a buyer chooses an offer:
+
+1. Validate the buyer's eligibility.
+2. Check the seller's remaining available surplus.
+3. Validate the offer's price against the configured rule.
+4. Validate the requested quantity.
+5. Calculate the total estimated cost.
+6. Show a confirmation screen.
+7. Complete the simulated transaction only after confirmation.
+8. Deduct the purchased quantity from available offer inventory.
+9. Update seller earnings and buyer savings.
+10. Add the transaction to the persistent ledger.
+11. Update all affected dashboards and charts.
+
+Use a deterministic matching algorithm.
+
+The algorithm must never allocate more electricity than the seller has available or more than the buyer requested.
+
+If the buyer requests 5 kWh and the cheapest seller only has 3 kWh remaining, either ask the buyer to accept 3 kWh or offer a clearly explained multi-seller allocation.
+
+Do not silently complete a purchase for a different quantity.
+
+Do not create duplicate transactions when the same request is submitted twice.
+
+Show a clear success or failure message after each action.
+
+8. Transparent buyer cost and seller earnings
+
+Use a consistent calculation throughout the application.
+
+Buyer total cost:
+
+Purchased energy × energy price + applicable buyer charges.
+
+Seller gross revenue:
+
+Sold energy × agreed energy price.
+
+Seller net earnings:
+
+Gross revenue − seller-paid fees and applicable deductions.
+
+Buyer estimated savings:
+
+Comparable baseline cost for the same energy quantity − total buyer cost.
+
+Savings percentage:
+
+Estimated savings ÷ comparable baseline cost × 100.
+
+For example, for 5 kWh:
+
+- Illustrative baseline: ₹8/kWh.
+- Energy price: ₹4.20/kWh.
+- Illustrative additional charges: ₹0.20/kWh.
+
+Baseline cost = ₹40.
+
+Buyer cost = ₹22.
+
+Estimated buyer savings = ₹18, or 45%.
+
+This is an example, not a promise of real savings. Configure the baseline to represent the relevant comparison tariff. Do not claim savings if a valid baseline is unavailable or the result is negative.
+
+Use the same calculation service for dashboards, transaction confirmations, and analytics.
+
+9. Make every chart display meaningful data
+
+Fix the empty or incomplete charts in the current screenshots.
+
+Admin analytics
+
+Display:
+
+1. Electricity price across 24 simulated hours.
+2. Solar generation versus consumption.
+3. Electricity traded per hour.
+4. Total seller surplus versus buyer demand.
+5. Buyer savings over time.
+6. Seller revenue over time.
+7. Participant-level energy traded.
+8. Completed and unmatched demand.
+
+Use actual simulation and transaction data from the shared state.
+
+When a chart has no transactions yet, show an explanation and a useful preview of the simulation data instead of an unexplained blank panel.
+
+Distinguish forecast or simulated data from completed transaction data.
+
+Seller analytics
+
+Display:
+
+- Electricity generated.
+- Electricity consumed.
+- Electricity sold.
+- Remaining surplus.
+- Gross revenue.
+- Fees.
+- Net earnings.
+- Recent sales.
+
+Buyer analytics
+
+Display:
+
+- Electricity purchased.
+- Total purchase cost.
+- Comparable baseline cost.
+- Estimated savings.
+- Recent purchases.
+- Available offers.
+
+Do not expose all participants' private purchase histories to an ordinary buyer or seller.
+
+10. Transaction ledger and tamper-evident history
+
+Preserve the existing SHA-256 linked transaction ledger if it is working correctly.
+
+For every completed transaction, record:
+
+- Unique transaction ID.
+- Simulated date and hour.
+- Buyer ID.
+- Seller ID.
+- Energy quantity.
+- Agreed energy price.
+- Applicable charges.
+- Buyer total cost.
+- Seller gross and net earnings.
+- Buyer savings calculation and baseline.
+- Pricing-rule version.
+- Previous block hash.
+- Current block hash.
+
+Verify the ledger using the original canonical serialization and hashing implementation.
+
+If a verification fails, identify the affected record and report the integrity error.
+
+Do not claim that hashing proves a price is legally valid. The pricing-rule validation and transaction-integrity checks are separate functions.
+
+11. Improve the entire UI/UX
+
+Use simple labels and remove unnecessary technical language from ordinary user screens.
+
+Replace confusing terms:
+
+- "CDA" → "Automatic electricity matching".
+- "Custom Bid" → Remove from the buyer interface.
+- "Custom Ask" → Remove from the seller interface.
+- "Market Clearing Price" → "Current electricity price".
+- "Uncommitted Surplus" → "Electricity available to sell".
+- "Demand Pressure Index" → "Demand compared with available supply".
+- "Run Full 24h" → "Run full-day demonstration".
+- "Step Hour" → "Advance simulation by one hour".
+
+Keep advanced pricing and technical settings available to authorized administrators only.
+
+Use a clear visual hierarchy, readable typography, consistent spacing, accessible contrast, clear status labels, and responsive layouts.
+
+Every button must have a meaningful action.
+
+Provide confirmation dialogs for transactions and simulation resets.
+
+Show success messages, validation errors, loading states, and empty-state explanations.
+
+12. Demonstration workflow for a college presentation
+
+The application must support this complete demonstration without manual database editing.
+
+Scene 1: Start as admin
+
+The admin opens the dashboard and sees 12 fictional participants, their solar capacity, current demand, and simulation time.
+
+Scene 2: Start the simulation
+
+The admin starts automatic mode or advances the clock manually.
+
+Solar generation, consumption, surplus, demand, and recommended price update together.
+
+Scene 3: Open the seller dashboard
+
+Select Green Meadows Villa.
+
+Show its solar generation, household consumption, and surplus.
+
+The seller accepts the recommended price and publishes an offer.
+
+Scene 4: Open the buyer dashboard
+
+Switch to Apex Tech Park or another consumer.
+
+The buyer sees the newly published offer, selects a quantity, reviews the cost and estimated savings, and confirms the purchase.
+
+Scene 5: Show the transaction result
+
+Display a confirmation containing the buyer, seller, quantity, agreed price, total cost, and transaction ID.
+
+Update the seller's earnings and the buyer's savings.
+
+Scene 6: Show the ledger
+
+Open the admin ledger and locate the new transaction.
+
+Verify its hash-chain integrity.
+
+Scene 7: Advance time
+
+Advance one simulated hour.
+
+Show the new solar generation, available offers, demand, and calculated price.
+
+If supply or demand changes, explain why the recommended price changed.
+
+Scene 8: Complete the day
+
+Run the full-day simulation and show the final trading, earnings, savings, and energy reports.
+
+The simulation must produce deterministic, understandable results rather than arbitrary random numbers.
+
+13. Acceptance tests
+
+Do not declare the upgrade complete until all the following work:
+
+- Three separate roles have the correct permissions.
+- The initial dataset contains at least 12 participants.
+- The clock advances automatically and manually.
+- All pages use the same simulation time.
+- Solar generation and consumption change according to hourly profiles.
+- Seller surplus and buyer demand are calculated correctly.
+- A seller can publish an eligible offer.
+- A buyer can purchase available electricity.
+- Quantities cannot exceed available energy or demand.
+- Successful transactions update all relevant dashboards.
+- Seller earnings and buyer savings use consistent formulas.
+- Prices change according to configured inputs and constraints.
+- Price explanations identify the reasons for changes.
+- Invalid offers show the configured rule and rejection reason.
+- Price-review requests can be submitted and tracked.
+- Charts use the actual simulation and transaction data.
+- The ledger records completed transactions and verifies integrity.
+- The system does not duplicate purchases.
+- Refreshing the browser does not silently reset the simulation.
+- Empty states and errors are explained in plain language.
+- All visible buttons have working actions.
+- Existing functionality and data are preserved.
+
+First inspect the current implementation, then make the changes in the existing project. Run the application and test the entire end-to-end workflow. Provide a concise report of implemented changes, tests performed, and any remaining limitations.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-15T05:35:04+05:30.
+</ADDITIONAL_METADATA>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolarShare — Peer-to-Peer Energy Trading Simulator</title>
+  <base href="/" />
+  
+  <!-- Inter Font & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom Light-Theme Style Sheet -->
+  <link rel="stylesheet" href="/css/style.css" />
+  
+  <!-- Tailwind CSS CDN with custom clean color extensions -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b'
+            },
+            amber: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Identity Services (GIS) Library -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="bg-[#fafbf9] text-[#1e293b] flex flex-col min-h-screen antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+  <!-- TOP HEADER & SIMULATION CONTROLS -->
+  <header id="app-header" class="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+    <!-- Rendered dynamically by header.js -->
+  </header>
+
+  <!-- DEDICATED AUTHENTICATION VIEW CONTAINER (Clean /login and /register screen) -->
+  <div id="auth-view-container" class="hidden flex-1 flex flex-col justify-center items-center py-8 px-4 w-full">
+    <!-- Rendered dynamically by login.js or register.js -->
+  </div>
+
+  <!-- MAIN APP CONTAINER: SIDEBAR + MAIN CONTENT (Protected Dashboard Views) -->
+  <div id="main-layout-container" class="flex-1 flex max-w-7xl w-full mx-auto px-4 py-5 gap-5">
+
+    <!-- DESKTOP SIDEBAR NAVIGATION -->
+    <aside id="main-sidebar" class="w-60 flex-shrink-0 hidden md:block">
+      <div class="card p-3.5 sticky top-28 bg-white border border-slate-200 shadow-sm space-y-3.5">
+        <div class="px-2 pt-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+          Navigation Menu
+        </div>
+
+        <nav id="sidebar-nav" class="space-y-1">
+          <!-- Dynamically populated based on active role (Admin / Seller / Buyer) -->
+        </nav>
+
+        <div class="pt-3 border-t border-slate-100 px-2 space-y-1.5">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Trading Benchmarks</div>
+          <div class="text-[11px] text-slate-600 space-y-1 font-mono">
+            <div class="flex justify-between"><span>Retail Tariff:</span> <span class="text-slate-900 font-bold">₹8.00/kWh</span></div>
+            <div class="flex justify-between"><span>Feed-in Floor:</span> <span class="text-slate-900 font-bold">₹2.00/kWh</span></div>
+            <div class="flex justify-between"><span>Pricing Rule:</span> <span class="text-emerald-700 font-bold">Midpoint</span></div>
+            <div class="flex justify-between"><span>Audit Chain:</span> <span class="text-emerald-700 font-bold">SHA-256</span></div>
+          </div>
+        </div>
+
+        <div class="pt-2 px-1">
+          <div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 font-medium">
+            SDG 7: Clean Energy & Green Technology
+          </div>
+        </div>
+
+        <!-- ACTIVE ACCOUNT PROFILE & PROMINENT LOGOUT BUTTON -->
+        <div id="sidebar-account-container" class="pt-3 border-t border-slate-100">
+          <!-- Populated by app.js renderSidebar() -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- MOBILE NAVIGATION (HORIZONTAL SCROLL ON SMALL SCREENS) -->
+    <div class="md:hidden w-full mb-3">
+      <div id="mobile-nav-items" class="flex overflow-x-auto gap-1.5 pb-1">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- MAIN ACTIVE VIEW CONTENT CONTAINER -->
+    <main class="flex-1 min-w-0">
+      <div id="view-content" class="min-h-[500px]">
+        <!-- Injected dynamically by active router component -->
+        <div class="p-12 text-center text-slate-400 text-xs">
+          <div class="w-5 h-5 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+          Loading SolarShare Peer Energy Marketplace...
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- PERSISTENT FOOTER -->
+  <footer id="app-footer" class="border-t border-slate-200 bg-white py-5 px-4 text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-extrabold text-emerald-800">SolarShare</span>
+        <span>•</span>
+        <span class="font-medium">Trade Clean Energy. Save Money. Power Your Community.</span>
+        <span>•</span>
+        <span class="text-emerald-700 font-semibold">SDG 7 Clean Energy</span>
+      </div>
+      <div class="text-[11px] text-slate-400">
+        Continuous Double-Auction • Midpoint Pricing • SHA-256 Cryptographic Audit Chain • Verified Ledger
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT DEPENDENCY PIPELINE -->
+  <script src="/js/icons.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/components/toast.js"></script>
+  <script src="/js/components/login.js"></script>
+  <script src="/js/components/register.js"></script>
+  <script src="/js/components/header.js"></script>
+  <script src="/js/components/sellerDashboard.js"></script>
+  <script src="/js/components/buyerDashboard.js"></script>
+  <script src="/js/components/overview.js"></script>
+  <script src="/js/components/marketplace.js"></script>
+  <script src="/js/components/households.js"></script>
+  <script src="/js/components/analytics.js"></script>
+  <script src="/js/components/ledger.js"></script>
+  <script src="/js/components/savings.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

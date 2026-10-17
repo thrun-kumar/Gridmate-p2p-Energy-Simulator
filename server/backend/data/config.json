@@ -1,0 +1,14 @@
+{
+  "referenceImportTariff": 8,
+  "referenceExportTariff": 2,
+  "minimumTradePrice": 2,
+  "maximumTradePrice": 8,
+  "platformFeePerKWh": 0.2,
+  "platformFeePayer": "buyer",
+  "dynamicPricingEnabled": true,
+  "defaultTradingIntervalMinutes": 60,
+  "gridEmissionFactorKgPerKWh": 0.82,
+  "dailyOperatingCost": 100,
+  "paymentProcessingCostPerKWh": 0.02,
+  "maintenanceCostPerKWh": 0.03
+}

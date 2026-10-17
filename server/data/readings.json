@@ -1,0 +1,1850 @@
+[
+  {
+    "timestamp": "2026-10-14T00:00:00.000Z",
+    "hour": 0,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T01:00:00.000Z",
+    "hour": 1,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T02:00:00.000Z",
+    "hour": 2,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T03:00:00.000Z",
+    "hour": 3,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.3,
+        "surplusKWh": 0,
+        "deficitKWh": 0.3
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T04:00:00.000Z",
+    "hour": 4,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.4,
+        "surplusKWh": 0,
+        "deficitKWh": 0.4
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T05:00:00.000Z",
+    "hour": 5,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.7,
+        "surplusKWh": 0,
+        "deficitKWh": 0.7
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.7,
+        "surplusKWh": 0,
+        "deficitKWh": 0.7
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.8
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T06:00:00.000Z",
+    "hour": 6,
+    "weatherFactor": 0.92,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 3.5,
+        "surplusKWh": 0,
+        "deficitKWh": 3.5
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.8
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1.5
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 1.3,
+        "surplusKWh": 0,
+        "deficitKWh": 1.3
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 2.5,
+        "surplusKWh": 0,
+        "deficitKWh": 2.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 1.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.1
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 2.8,
+        "surplusKWh": 0,
+        "deficitKWh": 2.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T07:00:00.000Z",
+    "hour": 7,
+    "weatherFactor": 0.94,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 1.24,
+        "consumedKWh": 2,
+        "surplusKWh": 0,
+        "deficitKWh": 0.76
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 6.2,
+        "surplusKWh": 0,
+        "deficitKWh": 6.2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0.99,
+        "consumedKWh": 2.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.21
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0,
+        "deficitKWh": 1.6
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.9,
+        "surplusKWh": 0,
+        "deficitKWh": 1.9
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0.74,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.06
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 3.5,
+        "surplusKWh": 0,
+        "deficitKWh": 3.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0.5,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 4.8,
+        "surplusKWh": 0,
+        "deficitKWh": 4.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T08:00:00.000Z",
+    "hour": 8,
+    "weatherFactor": 0.96,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 3.39,
+        "consumedKWh": 1.8,
+        "surplusKWh": 1.59,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8,
+        "surplusKWh": 0,
+        "deficitKWh": 8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 2.72,
+        "consumedKWh": 2,
+        "surplusKWh": 0.72,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0,
+        "deficitKWh": 1.6
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 2.04,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0.54,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.2,
+        "surplusKWh": 0,
+        "deficitKWh": 4.2
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 1.36,
+        "consumedKWh": 1.3,
+        "surplusKWh": 0.06,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.2,
+        "surplusKWh": 0,
+        "deficitKWh": 6.2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T09:00:00.000Z",
+    "hour": 9,
+    "weatherFactor": 0.97,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 5.77,
+        "consumedKWh": 1.2,
+        "surplusKWh": 4.57,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8.5,
+        "surplusKWh": 0,
+        "deficitKWh": 8.5
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 4.61,
+        "consumedKWh": 1.5,
+        "surplusKWh": 3.11,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 3.46,
+        "consumedKWh": 1.1,
+        "surplusKWh": 2.36,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.5,
+        "surplusKWh": 0,
+        "deficitKWh": 4.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 2.31,
+        "consumedKWh": 0.9,
+        "surplusKWh": 1.41,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.8,
+        "surplusKWh": 0,
+        "deficitKWh": 6.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T10:00:00.000Z",
+    "hour": 10,
+    "weatherFactor": 0.98,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 7.9,
+        "consumedKWh": 1,
+        "surplusKWh": 6.9,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8.4,
+        "surplusKWh": 0,
+        "deficitKWh": 8.4
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 6.32,
+        "consumedKWh": 1.2,
+        "surplusKWh": 5.12,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 4.74,
+        "consumedKWh": 0.9,
+        "surplusKWh": 3.84,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.6,
+        "surplusKWh": 0,
+        "deficitKWh": 4.6
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 3.16,
+        "consumedKWh": 0.8,
+        "surplusKWh": 2.36,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.9,
+        "surplusKWh": 0,
+        "deficitKWh": 6.9
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T11:00:00.000Z",
+    "hour": 11,
+    "weatherFactor": 0.98,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 9.3,
+        "consumedKWh": 0.9,
+        "surplusKWh": 8.4,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8.2,
+        "surplusKWh": 0,
+        "deficitKWh": 8.2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 7.44,
+        "consumedKWh": 1.1,
+        "surplusKWh": 6.34,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 5.58,
+        "consumedKWh": 0.8,
+        "surplusKWh": 4.78,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.5,
+        "surplusKWh": 0,
+        "deficitKWh": 4.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 3.72,
+        "consumedKWh": 0.7,
+        "surplusKWh": 3.02,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.7,
+        "surplusKWh": 0,
+        "deficitKWh": 0.7
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.7,
+        "surplusKWh": 0,
+        "deficitKWh": 6.7
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T12:00:00.000Z",
+    "hour": 12,
+    "weatherFactor": 0.99,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 9.9,
+        "consumedKWh": 0.9,
+        "surplusKWh": 9,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 7.8,
+        "surplusKWh": 0,
+        "deficitKWh": 7.8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 7.92,
+        "consumedKWh": 1.1,
+        "surplusKWh": 6.82,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 5.94,
+        "consumedKWh": 0.8,
+        "surplusKWh": 5.14,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.4,
+        "surplusKWh": 0,
+        "deficitKWh": 4.4
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 3.96,
+        "consumedKWh": 0.7,
+        "surplusKWh": 3.26,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.7,
+        "surplusKWh": 0,
+        "deficitKWh": 0.7
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.4,
+        "surplusKWh": 0,
+        "deficitKWh": 6.4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T13:00:00.000Z",
+    "hour": 13,
+    "weatherFactor": 0.98,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 9.3,
+        "consumedKWh": 1,
+        "surplusKWh": 8.3,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8,
+        "surplusKWh": 0,
+        "deficitKWh": 8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 7.44,
+        "consumedKWh": 1.2,
+        "surplusKWh": 6.24,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 5.58,
+        "consumedKWh": 0.9,
+        "surplusKWh": 4.68,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.5,
+        "surplusKWh": 0,
+        "deficitKWh": 4.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 3.72,
+        "consumedKWh": 0.8,
+        "surplusKWh": 2.92,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.6,
+        "surplusKWh": 0,
+        "deficitKWh": 6.6
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T14:00:00.000Z",
+    "hour": 14,
+    "weatherFactor": 0.97,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 7.82,
+        "consumedKWh": 1.1,
+        "surplusKWh": 6.72,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8.2,
+        "surplusKWh": 0,
+        "deficitKWh": 8.2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 6.25,
+        "consumedKWh": 1.3,
+        "surplusKWh": 4.95,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.1
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 4.69,
+        "consumedKWh": 1,
+        "surplusKWh": 3.69,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.6,
+        "surplusKWh": 0,
+        "deficitKWh": 4.6
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 3.13,
+        "consumedKWh": 0.9,
+        "surplusKWh": 2.23,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.8,
+        "surplusKWh": 0,
+        "deficitKWh": 6.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T15:00:00.000Z",
+    "hour": 15,
+    "weatherFactor": 0.95,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 5.65,
+        "consumedKWh": 1.3,
+        "surplusKWh": 4.35,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 8,
+        "surplusKWh": 0,
+        "deficitKWh": 8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 4.52,
+        "consumedKWh": 1.6,
+        "surplusKWh": 2.92,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.3,
+        "surplusKWh": 0,
+        "deficitKWh": 1.3
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 3.39,
+        "consumedKWh": 1.2,
+        "surplusKWh": 2.19,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.5,
+        "surplusKWh": 0,
+        "deficitKWh": 4.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 2.26,
+        "consumedKWh": 1,
+        "surplusKWh": 1.26,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.1
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 6.6,
+        "surplusKWh": 0,
+        "deficitKWh": 6.6
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T16:00:00.000Z",
+    "hour": 16,
+    "weatherFactor": 0.93,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 3.29,
+        "consumedKWh": 1.8,
+        "surplusKWh": 1.49,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 7.2,
+        "surplusKWh": 0,
+        "deficitKWh": 7.2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 2.63,
+        "consumedKWh": 2.1,
+        "surplusKWh": 0.53,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1.5
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.7,
+        "surplusKWh": 0,
+        "deficitKWh": 1.7
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 1.97,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0.37,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 4.2,
+        "surplusKWh": 0,
+        "deficitKWh": 4.2
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 1.32,
+        "consumedKWh": 1.3,
+        "surplusKWh": 0.02,
+        "deficitKWh": 0
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 5.8,
+        "surplusKWh": 0,
+        "deficitKWh": 5.8
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T17:00:00.000Z",
+    "hour": 17,
+    "weatherFactor": 0.9,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 1.19,
+        "consumedKWh": 2.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.21
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 5.5,
+        "surplusKWh": 0,
+        "deficitKWh": 5.5
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0.95,
+        "consumedKWh": 2.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.85
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 2,
+        "surplusKWh": 0,
+        "deficitKWh": 2
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 2.3,
+        "surplusKWh": 0,
+        "deficitKWh": 2.3
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0.71,
+        "consumedKWh": 2.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.39
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 3.8,
+        "surplusKWh": 0,
+        "deficitKWh": 3.8
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0.47,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.33
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.9,
+        "surplusKWh": 0,
+        "deficitKWh": 1.9
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 4.4,
+        "surplusKWh": 0,
+        "deficitKWh": 4.4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T18:00:00.000Z",
+    "hour": 18,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 3,
+        "surplusKWh": 0,
+        "deficitKWh": 3
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 3.8,
+        "surplusKWh": 0,
+        "deficitKWh": 3.8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 3.2,
+        "surplusKWh": 0,
+        "deficitKWh": 3.2
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 2.5,
+        "surplusKWh": 0,
+        "deficitKWh": 2.5
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 2.8,
+        "surplusKWh": 0,
+        "deficitKWh": 2.8
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 2.6,
+        "surplusKWh": 0,
+        "deficitKWh": 2.6
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 3.2,
+        "surplusKWh": 0,
+        "deficitKWh": 3.2
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 2.2,
+        "surplusKWh": 0,
+        "deficitKWh": 2.2
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 2.4,
+        "surplusKWh": 0,
+        "deficitKWh": 2.4
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 3,
+        "surplusKWh": 0,
+        "deficitKWh": 3
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T19:00:00.000Z",
+    "hour": 19,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 2.8,
+        "surplusKWh": 0,
+        "deficitKWh": 2.8
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 2.5,
+        "surplusKWh": 0,
+        "deficitKWh": 2.5
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 3,
+        "surplusKWh": 0,
+        "deficitKWh": 3
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 2.4,
+        "surplusKWh": 0,
+        "deficitKWh": 2.4
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 2.6,
+        "surplusKWh": 0,
+        "deficitKWh": 2.6
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 2.4,
+        "surplusKWh": 0,
+        "deficitKWh": 2.4
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 2.8,
+        "surplusKWh": 0,
+        "deficitKWh": 2.8
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 2,
+        "surplusKWh": 0,
+        "deficitKWh": 2
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 2.2,
+        "surplusKWh": 0,
+        "deficitKWh": 2.2
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 2,
+        "surplusKWh": 0,
+        "deficitKWh": 2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T20:00:00.000Z",
+    "hour": 20,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 2.2,
+        "surplusKWh": 0,
+        "deficitKWh": 2.2
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 2,
+        "surplusKWh": 0,
+        "deficitKWh": 2
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 2.5,
+        "surplusKWh": 0,
+        "deficitKWh": 2.5
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 2,
+        "surplusKWh": 0,
+        "deficitKWh": 2
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 2.2,
+        "surplusKWh": 0,
+        "deficitKWh": 2.2
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 1.9,
+        "surplusKWh": 0,
+        "deficitKWh": 1.9
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 2.5,
+        "surplusKWh": 0,
+        "deficitKWh": 2.5
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 1.7,
+        "surplusKWh": 0,
+        "deficitKWh": 1.7
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.8
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0,
+        "deficitKWh": 1.6
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T21:00:00.000Z",
+    "hour": 21,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0,
+        "deficitKWh": 1.6
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.8
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 1.9,
+        "surplusKWh": 0,
+        "deficitKWh": 1.9
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1.5
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0,
+        "deficitKWh": 1.6
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 2.2,
+        "surplusKWh": 0,
+        "deficitKWh": 2.2
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 1.3,
+        "surplusKWh": 0,
+        "deficitKWh": 1.3
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T22:00:00.000Z",
+    "hour": 22,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 1.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.1
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1.5,
+        "surplusKWh": 0,
+        "deficitKWh": 1.5
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 1.4,
+        "surplusKWh": 0,
+        "deficitKWh": 1.4
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 1.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.1
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.9,
+        "surplusKWh": 0,
+        "deficitKWh": 0.9
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.8,
+        "surplusKWh": 0,
+        "deficitKWh": 1.8
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 1.2,
+        "surplusKWh": 0,
+        "deficitKWh": 1.2
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-14T23:00:00.000Z",
+    "hour": 23,
+    "weatherFactor": 1,
+    "householdReadings": [
+      {
+        "householdId": "HH-01",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-02",
+        "generatedKWh": 0,
+        "consumedKWh": 1.3,
+        "surplusKWh": 0,
+        "deficitKWh": 1.3
+      },
+      {
+        "householdId": "HH-03",
+        "generatedKWh": 0,
+        "consumedKWh": 1,
+        "surplusKWh": 0,
+        "deficitKWh": 1
+      },
+      {
+        "householdId": "HH-04",
+        "generatedKWh": 0,
+        "consumedKWh": 0.7,
+        "surplusKWh": 0,
+        "deficitKWh": 0.7
+      },
+      {
+        "householdId": "HH-05",
+        "generatedKWh": 0,
+        "consumedKWh": 0.8,
+        "surplusKWh": 0,
+        "deficitKWh": 0.8
+      },
+      {
+        "householdId": "HH-06",
+        "generatedKWh": 0,
+        "consumedKWh": 0.6,
+        "surplusKWh": 0,
+        "deficitKWh": 0.6
+      },
+      {
+        "householdId": "HH-07",
+        "generatedKWh": 0,
+        "consumedKWh": 1.6,
+        "surplusKWh": 0,
+        "deficitKWh": 1.6
+      },
+      {
+        "householdId": "HH-08",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-09",
+        "generatedKWh": 0,
+        "consumedKWh": 0.5,
+        "surplusKWh": 0,
+        "deficitKWh": 0.5
+      },
+      {
+        "householdId": "HH-10",
+        "generatedKWh": 0,
+        "consumedKWh": 1.1,
+        "surplusKWh": 0,
+        "deficitKWh": 1.1
+      }
+    ]
+  }
+]

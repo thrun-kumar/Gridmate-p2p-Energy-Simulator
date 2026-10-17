@@ -1,0 +1,24 @@
+{
+  "name": "solarshare",
+  "version": "2.0.0",
+  "description": "SolarShare - Peer-to-Peer Grid-Connected Solar Electricity Marketplace Simulator (UN SDG 7)",
+  "main": "server/src/index.js",
+  "scripts": {
+    "start": "node server/src/index.js",
+    "dev": "node server/src/index.js",
+    "run": "node server/src/index.js",
+    "test": "node server/src/tests/acceptance_scenario.test.js",
+    "test:all": "node server/src/tests/grid_connected_trading.test.js && node server/src/tests/acceptance_scenario.test.js && node server/src/tests/regulation_aware_marketplace.test.js && node server/src/tests/simulation.test.js",
+    "test:live": "node test_live_all.js"
+  },
+  "keywords": [
+    "solar",
+    "clean-energy",
+    "p2p-trading",
+    "sdg-7",
+    "energy-marketplace",
+    "tamper-evident-ledger"
+  ],
+  "author": "SolarShare Core Team",
+  "license": "MIT"
+}

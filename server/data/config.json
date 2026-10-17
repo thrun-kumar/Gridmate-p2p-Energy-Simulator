@@ -1,0 +1,19 @@
+{
+  "referenceImportTariff": 8,
+  "referenceExportTariff": 2,
+  "minimumTradePrice": 2,
+  "maximumTradePrice": 8,
+  "platformFeePerKWh": 0.2,
+  "platformFeePayer": "buyer",
+  "dynamicPricingEnabled": true,
+  "defaultTradingIntervalMinutes": 60,
+  "gridEmissionFactorKgPerKWh": 0.82,
+  "dailyOperatingCost": 100,
+  "paymentProcessingCostPerKWh": 0.02,
+  "maintenanceCostPerKWh": 0.03,
+  "gridConnectedTrading": true,
+  "intraZoneLossPercent": 1.5,
+  "interZoneLossPercent": 3.5,
+  "intraZoneWheelingRateINR": 0.1,
+  "interZoneWheelingRateINR": 0.25
+}

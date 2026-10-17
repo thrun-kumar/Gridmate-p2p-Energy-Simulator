@@ -1,0 +1,20 @@
+{
+  "totalEnergyTradedKWh": 0,
+  "transactionFeesCollectedINR": 0,
+  "totalCompanyRevenueINR": 0,
+  "dailyOperatingCostINR": 100,
+  "variableOperatingCostsINR": 0,
+  "totalOperatingCostINR": 100,
+  "estimatedProfitLossINR": -100,
+  "isProfitable": false,
+  "sellerGrossEarningsINR": 0,
+  "buyerGrossEnergyCostINR": 0,
+  "buyerPlatformFeesINR": 0,
+  "buyerTotalCostINR": 0,
+  "calculations": {
+    "platformFeeFormula": "tradedKWh * platformFeePerKWh (₹0.20/kWh)",
+    "operatingCostFormula": "dailyOperatingCost (₹100) + tradedKWh * (processingFee ₹0.02 + maintenanceFee ₹0.03)",
+    "profitFormula": "totalCompanyRevenue - totalOperatingCost"
+  },
+  "updatedAt": "2026-10-14T15:35:56.222Z"
+}
