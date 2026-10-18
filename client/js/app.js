@@ -525,6 +525,31 @@ window.App = {
     }
   },
 
+  async applyScenarioFromSelect() {
+    const select = document.getElementById('sim-scenario-select');
+    if (!select) return;
+    const scenarioKey = select.value;
+    await this.applyScenario(scenarioKey);
+  },
+
+  async applyScenario(scenarioKey) {
+    const btn = document.getElementById('btn-apply-scenario');
+    if (btn) btn.disabled = true;
+
+    try {
+      const res = await window.API.applyScenario(scenarioKey);
+      this.simulationStatus = await window.API.getSimulationStatus();
+      window.Header.render(this.simulationStatus);
+      await this.renderCurrentView();
+      window.Toast.success(`Scenario applied: ${res.scenarioName} (${res.scenarioBadge}).`);
+      window.Header.showScenarioImpactModal(res);
+    } catch (err) {
+      window.Toast.error(`Failed to apply scenario: ${err.message}`);
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  },
+
   async logout() {
     await window.API.logout();
     this.currentUser = null;

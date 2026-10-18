@@ -128,6 +128,8 @@ window.API = {
   toggleAutoSimulation(speedSeconds = 10) { return this.post('/api/simulation/auto/toggle', { speedSeconds }); },
   setSimulationSpeed(speedSeconds) { return this.post('/api/simulation/speed', { speedSeconds }); },
   resetSimulation() { return this.post('/api/simulation/reset'); },
+  getSimulationScenarios() { return this.get('/api/simulation/scenarios'); },
+  applyScenario(scenario, options = {}) { return this.post('/api/simulation/scenario', { scenario, options }); },
   submitOffer(householdId, energyKWh, askingPriceINR) {
     return this.post('/api/marketplace/offers', { householdId, energyKWh, askingPriceINR });
   },

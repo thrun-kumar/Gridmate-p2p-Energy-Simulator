@@ -60,6 +60,8 @@ window.Header = {
     const isRunning = Boolean(statusData?.isRunning);
     const autoMatchingEnabled = statusData ? statusData.autoMatchingEnabled !== false : true;
     const speedSec = statusData?.autoSpeedSeconds || 10;
+    const activeScenario = statusData?.activeScenario || 'SUNNY_DAY';
+    const scenarioShortName = activeScenario === 'SUNNY_DAY' ? 'Sunny Day' : (activeScenario === 'MONSOON_OVERCAST' ? 'Monsoon' : (activeScenario === 'HEATWAVE_PEAK' ? 'Heatwave' : 'Route Down'));
 
     let roleBadgeClass = 'badge-emerald';
     if (user.role === 'BUYER') roleBadgeClass = 'badge-blue';
@@ -112,6 +114,13 @@ window.Header = {
                 <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Paused
               </span>
             `}
+          </div>
+          <span class="text-slate-300">|</span>
+          <div class="flex items-center gap-1.5" title="${statusData?.scenarioDetails?.description || 'Active Simulation Scenario'}">
+            <span class="text-slate-500 font-medium">Scenario:</span>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${activeScenario === 'SUNNY_DAY' ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-amber-100 text-amber-900 border border-amber-300'}">
+              ${scenarioShortName}
+            </span>
           </div>
         </div>
 
@@ -190,6 +199,25 @@ window.Header = {
               Run Full 24 Hours
             </button>
 
+            <!-- Scenario Selector & Apply Action -->
+            <div class="flex items-center gap-1 text-[11px] text-slate-600 bg-slate-50 border border-slate-200 rounded px-1.5 py-0.5">
+              <span class="hidden xl:inline text-slate-400 font-medium">Scenario:</span>
+              <select id="sim-scenario-select" class="text-xs bg-white border border-slate-200 rounded px-1.5 py-1 text-slate-700 font-semibold" title="Select weather or grid contingency scenario">
+                <option value="SUNNY_DAY" ${activeScenario === 'SUNNY_DAY' ? 'selected' : ''}>Sunny Day (95% Solar)</option>
+                <option value="MONSOON_OVERCAST" ${activeScenario === 'MONSOON_OVERCAST' ? 'selected' : ''}>Monsoon Overcast (30% Solar)</option>
+                <option value="HEATWAVE_PEAK" ${activeScenario === 'HEATWAVE_PEAK' ? 'selected' : ''}>Heatwave Peak (+40% Demand)</option>
+                <option value="ROUTE_FAILURE" ${activeScenario === 'ROUTE_FAILURE' ? 'selected' : ''}>Route Failure (Zone A-B Cut)</option>
+              </select>
+              <button 
+                id="btn-apply-scenario" 
+                onclick="window.App.applyScenarioFromSelect()" 
+                class="btn btn-secondary text-xs py-1 px-2 font-bold text-slate-800 border-slate-300 hover:bg-slate-100" 
+                title="Apply selected scenario"
+              >
+                Apply
+              </button>
+            </div>
+
             <!-- Reset Demo to Initial State -->
             <button 
               id="btn-reset-simulation" 
@@ -229,6 +257,8 @@ window.Header = {
       <div id="account-switcher-container"></div>
       <!-- 9-Point Simulation Results Summary Modal Placeholder -->
       <div id="simulation-summary-modal-container"></div>
+      <!-- Scenario Impact Summary Modal Placeholder -->
+      <div id="scenario-modal-container"></div>
     `;
   },
 
@@ -449,6 +479,114 @@ window.Header = {
 
   closeSimulationResultsModal() {
     const container = document.getElementById('simulation-summary-modal-container');
+    if (container) container.innerHTML = '';
+  },
+
+  showScenarioImpactModal(result) {
+    const container = document.getElementById('scenario-modal-container');
+    if (!container) return;
+
+    const b = result.before || {};
+    const a = result.after || {};
+    const imp = result.impactSummary || {};
+
+    const formatDelta = (val, unit = '') => {
+      if (val === undefined || val === null || isNaN(val)) return '—';
+      const sign = val > 0 ? '+' : '';
+      const color = val > 0 ? 'text-amber-700 font-bold' : (val < 0 ? 'text-blue-700 font-bold' : 'text-slate-500');
+      return `<span class="${color}">(${sign}${val} ${unit})</span>`;
+    };
+
+    container.innerHTML = `
+      <div class="modal-backdrop flex items-center justify-center p-4">
+        <div class="card bg-white max-w-xl w-full p-6 shadow-2xl space-y-4 border border-slate-300">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-extrabold text-slate-900">Scenario Applied: ${result.scenarioName}</h3>
+                <span class="badge ${result.isContingency ? 'badge-amber' : 'badge-emerald'} text-[10px] font-bold uppercase">
+                  ${result.scenarioBadge}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">${result.description}</p>
+            </div>
+            <button onclick="window.Header.closeScenarioImpactModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg px-2">✕</button>
+          </div>
+
+          <!-- Impact Metrics Grid -->
+          <div class="space-y-2 text-xs">
+            <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Before vs. After Simulation Impact (Hour ${result.currentHourLabel})</div>
+            
+            <div class="grid grid-cols-2 gap-2.5">
+              <!-- Solar Generation -->
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-slate-500 font-medium text-[11px]">Solar Generation</div>
+                <div class="text-sm font-bold font-mono text-slate-800 mt-0.5">
+                  ${b.totalSolarGenKWh} → <span class="text-emerald-700">${a.totalSolarGenKWh} kWh</span>
+                </div>
+                <div class="text-[10px] mt-0.5">${formatDelta(imp.solarGenDeltaKWh, 'kWh')}</div>
+              </div>
+
+              <!-- Household Demand -->
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-slate-500 font-medium text-[11px]">Household Demand</div>
+                <div class="text-sm font-bold font-mono text-slate-800 mt-0.5">
+                  ${b.totalDemandKWh} → <span class="text-slate-900">${a.totalDemandKWh} kWh</span>
+                </div>
+                <div class="text-[10px] mt-0.5">${formatDelta(imp.demandDeltaKWh, 'kWh')}</div>
+              </div>
+
+              <!-- Available Surplus -->
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-slate-500 font-medium text-[11px]">Available Surplus</div>
+                <div class="text-sm font-bold font-mono text-slate-800 mt-0.5">
+                  ${b.availableSurplusKWh} → <span class="text-emerald-600">${a.availableSurplusKWh} kWh</span>
+                </div>
+                <div class="text-[10px] mt-0.5">${formatDelta(imp.surplusDeltaKWh, 'kWh')}</div>
+              </div>
+
+              <!-- Unmet Local Deficit -->
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-slate-500 font-medium text-[11px]">Unmet Local Deficit</div>
+                <div class="text-sm font-bold font-mono text-slate-800 mt-0.5">
+                  ${b.unmetDemandKWh} → <span class="text-amber-700">${a.unmetDemandKWh} kWh</span>
+                </div>
+                <div class="text-[10px] mt-0.5">${formatDelta(imp.deficitDeltaKWh, 'kWh')}</div>
+              </div>
+
+              <!-- Recommended Price -->
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-slate-500 font-medium text-[11px]">Recommended Price</div>
+                <div class="text-sm font-bold font-mono text-slate-800 mt-0.5">
+                  ₹${Number(b.recommendedPriceINR).toFixed(2)} → <span class="text-sky-700">₹${Number(a.recommendedPriceINR).toFixed(2)}/kWh</span>
+                </div>
+                <div class="text-[10px] mt-0.5">${formatDelta(imp.priceDeltaINR, '₹')}</div>
+              </div>
+
+              <!-- Route A-B Status -->
+              <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                <div class="text-slate-500 font-medium text-[11px]">Grid Route A-B (Intertie)</div>
+                <div class="text-sm font-bold font-mono mt-0.5">
+                  <span class="${a.routeStatusAB === 'CONNECTED' ? 'text-emerald-700' : 'text-rose-700 font-bold'}">${a.routeStatusAB}</span>
+                </div>
+                <div class="text-[10px] text-slate-400 mt-0.5">${a.routeStatusAB === 'CONNECTED' ? 'Inter-zone trading enabled' : 'Cross-zone trades rejected'}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+            <span class="text-[11px] text-slate-400">Preserving regulatory limits (₹2.00–₹8.00)</span>
+            <button onclick="window.Header.closeScenarioImpactModal()" class="btn btn-primary text-xs py-1.5 px-4 font-bold">
+              Got It
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  closeScenarioImpactModal() {
+    const container = document.getElementById('scenario-modal-container');
     if (container) container.innerHTML = '';
   }
 };

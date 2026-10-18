@@ -30,6 +30,7 @@ const {
   SEASONAL_PROFILES
 } = require('../marketplace/pricingService');
 const { pricingRuleService } = require('../services/pricingRuleService');
+const { SCENARIOS } = require('../simulation/scenarios');
 
 function setupRoutes(app, simManager) {
   // Authentication Helper Middleware
@@ -585,12 +586,51 @@ function setupRoutes(app, simManager) {
       isRunning: simManager.isRunning,
       autoSpeedSeconds: simManager.autoSpeedSeconds || 10,
       season: simManager.season || 'Summer',
+      activeScenario: simManager.activeScenario || 'SUNNY_DAY',
+      scenarioDetails: SCENARIOS[simManager.activeScenario] || SCENARIOS.SUNNY_DAY,
       weather: simManager.weather || 'Sunny / High Yield (95%)',
       weatherFactor: simManager.weatherFactor || 0.95,
+      demandMultiplier: simManager.demandMultiplier || 1.0,
+      activeRouteFailure: simManager.activeRouteFailure || null,
+      availableScenarios: Object.values(SCENARIOS),
       fullDayProgress: simManager.fullDayProgress,
       totalCompletedTrades: simManager.trades.length,
       ledgerBlocksCount: simManager.ledger.getRecords().length
     });
+  });
+
+  // 14b. Simulation Scenarios (Available options and active state)
+  app.get('/api/simulation/scenarios', (req, res) => {
+    res.json({
+      activeScenario: simManager.activeScenario || 'SUNNY_DAY',
+      scenarioDetails: SCENARIOS[simManager.activeScenario] || SCENARIOS.SUNNY_DAY,
+      scenarios: Object.values(SCENARIOS)
+    });
+  });
+
+  // 14c. Apply Interactive Simulation Scenario (Admin Only)
+  app.post('/api/simulation/scenario', (req, res) => {
+    const user = requireAuth(req, res);
+    if (!user) return;
+    if (user.role !== 'ADMIN') {
+      return res.status(403).json({
+        error: 'Access Denied: Only Grid Operator / Admin can change simulation scenarios.'
+      });
+    }
+
+    const scenarioKey = req.body?.scenario || req.body?.scenarioKey;
+    if (!scenarioKey || typeof scenarioKey !== 'string') {
+      return res.status(400).json({
+        error: 'Scenario key is required. Allowed scenarios: SUNNY_DAY, MONSOON_OVERCAST, HEATWAVE_PEAK, ROUTE_FAILURE'
+      });
+    }
+
+    try {
+      const result = simManager.applyScenario(scenarioKey, req.body?.options);
+      res.json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   });
 
   app.get('/api/simulation/summary', (req, res) => {

@@ -59,13 +59,17 @@ window.OverviewView = {
         <!-- Top Status Banner & Market Signal -->
         <div class="card p-5 card-accent-green bg-white flex flex-wrap items-center justify-between gap-4">
           <div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
               <h1 class="text-page-title text-slate-800">System-Wide Energy Market Overview</h1>
               <span class="badge ${statusBadgeClass} text-xs uppercase font-bold">${marketStatus}</span>
+              <span class="badge ${data.activeScenario && data.activeScenario !== 'SUNNY_DAY' ? 'badge-amber' : 'badge-emerald'} text-xs font-bold uppercase" title="${data.scenarioDetails?.description || 'Active Simulation Scenario'}">
+                ${data.scenarioDetails?.name || 'Sunny Day'}
+              </span>
               <span class="font-mono text-xs text-slate-500 font-semibold">${data.runId || 'SIM-RUN-01'}</span>
             </div>
             <p class="text-caption text-slate-500 mt-0.5">
               Current Simulation Hour: <span class="text-emerald-700 font-bold font-mono">${data.currentHourLabel || '12:00'}</span> • Demand compared with available supply: <span class="font-bold font-mono text-slate-700">${pricing.demandPressurePercent || 50}%</span>
+              ${data.scenarioDetails ? ` • <span class="text-slate-600 font-medium">${data.scenarioDetails.badge}</span>` : ''}
             </p>
           </div>
           <div class="flex items-center gap-3 text-xs bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-xl">

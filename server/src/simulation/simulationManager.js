@@ -13,14 +13,18 @@ const { TamperLedger } = require('../ledger/tamperLedger');
 const { calculateSolarGeneration, HOUSEHOLDS } = require('./dataGenerator');
 const { gridNetwork } = require('./gridNetwork');
 const { pricingRuleService } = require('../services/pricingRuleService');
+const { SCENARIOS } = require('./scenarios');
 
 class SimulationManager {
   constructor() {
     this.simulatedDate = '2026-10-15';
     this.currentRunId = `SIM-RUN-${this.simulatedDate.replace(/-/g, '')}-01`;
     this.season = 'Summer';
-    this.weather = 'Sunny / High Yield (95%)';
-    this.weatherFactor = 0.95;
+    this.activeScenario = 'SUNNY_DAY';
+    this.weather = SCENARIOS.SUNNY_DAY.weatherLabel;
+    this.weatherFactor = SCENARIOS.SUNNY_DAY.weatherFactor;
+    this.demandMultiplier = SCENARIOS.SUNNY_DAY.demandMultiplier;
+    this.activeRouteFailure = null;
     this.autoSpeedSeconds = 10;
     this.autoTimer = null;
     this.fullDayProgress = null;
@@ -42,6 +46,15 @@ class SimulationManager {
     this.autoMatchingEnabled = true;
     this.fullDayProgress = null;
     this.lastProcessedHour = null;
+
+    // Reset scenario state to default Sunny Day baseline
+    this.activeScenario = 'SUNNY_DAY';
+    this.weather = SCENARIOS.SUNNY_DAY.weatherLabel;
+    this.weatherFactor = SCENARIOS.SUNNY_DAY.weatherFactor;
+    this.demandMultiplier = SCENARIOS.SUNNY_DAY.demandMultiplier;
+    this.activeRouteFailure = null;
+    gridNetwork.setRouteStatus('ROUTE-A-B', 'CONNECTED');
+    gridNetwork.setRouteStatus('ROUTE-B-A', 'CONNECTED');
 
     // Load or initialize households from JSON store
     dataStore.ensureInitialized();
@@ -110,7 +123,8 @@ class SimulationManager {
    * Hydrates household records with deterministic 24-hour profiles
    */
   hydrateHouseholds(rawHouseholds) {
-    const weatherFactor = 0.95;
+    const weatherFactor = this.weatherFactor !== undefined ? this.weatherFactor : 0.95;
+    const demandMultiplier = this.demandMultiplier !== undefined ? this.demandMultiplier : 1.0;
 
     return rawHouseholds.map(raw => {
       const cap = Number(raw.solarCapacityKW || 0);
@@ -121,6 +135,9 @@ class SimulationManager {
         0.5, 0.4, 0.4, 0.4, 0.5, 0.8, 1.4, 2.0, 1.8, 1.2, 1.0, 0.9,
         0.9, 1.0, 1.1, 1.3, 1.8, 2.4, 3.0, 2.8, 2.2, 1.6, 1.1, 0.8
       ];
+      const baseDemandProfile = Array.isArray(raw.baseDemandProfile) && raw.baseDemandProfile.length === 24
+        ? raw.baseDemandProfile
+        : defaultProfile;
 
       const hourlyGen = [];
       const hourlyDem = [];
@@ -129,7 +146,7 @@ class SimulationManager {
 
       for (let h = 0; h < 24; h++) {
         const gen = calculateSolarGeneration(cap, h, weatherFactor);
-        const dem = Number(defaultProfile[h].toFixed(2));
+        const dem = Number((baseDemandProfile[h] * demandMultiplier).toFixed(2));
         const net = Number((gen - dem).toFixed(2));
         const sur = Number(Math.max(0, net).toFixed(2));
         const def = Number(Math.max(0, -net).toFixed(2));
@@ -164,6 +181,7 @@ class SimulationManager {
         walletBalance: Number((raw.walletBalance || (isProsumer ? 5000.0 : 10000.0)).toFixed(2)),
         createdAt: raw.createdAt || new Date().toISOString(),
         description: raw.description || (isProsumer ? `Prosumer with ${cap} kW solar array` : 'Energy consumer'),
+        baseDemandProfile,
         hourlyGeneration: hourlyGen,
         hourlyDemand: hourlyDem,
         hourlySurplus: hourlySur,
@@ -208,6 +226,140 @@ class SimulationManager {
       this.hourlyHistory[h].recommendedPriceINR = priceResult.recommendedPriceINR || 5.00;
       this.hourlyHistory[h].marketStatus = priceResult.statusLabel;
     }
+  }
+
+  /**
+   * Applies an interactive weather or grid contingency scenario.
+   * Recalculates 24-hour generation/demand, updates order books, adjusts grid routes,
+   * preserves regulatory price limits (₹2.00–₹8.00), and provides a structured before/after comparison.
+   *
+   * @param {string} scenarioKey 'SUNNY_DAY' | 'MONSOON_OVERCAST' | 'HEATWAVE_PEAK' | 'ROUTE_FAILURE'
+   * @param {Object} options Optional configuration overrides
+   * @returns {Object} Scenario impact summary
+   */
+  applyScenario(scenarioKey, options = {}) {
+    if (!scenarioKey || typeof scenarioKey !== 'string') {
+      throw new Error('Scenario key is required.');
+    }
+    const normalizedKey = scenarioKey.trim().toUpperCase();
+    const scenario = SCENARIOS[normalizedKey];
+    if (!scenario) {
+      throw new Error(`Invalid scenario "${scenarioKey}". Allowed scenarios: ${Object.keys(SCENARIOS).join(', ')}`);
+    }
+
+    const currentHour = this.currentHour;
+    const currentEntry = this.hourlyHistory[currentHour] || {};
+    const routeABBefore = gridNetwork.getRoute('ZONE-A', 'ZONE-B');
+
+    // 1. Snapshot BEFORE state
+    const before = {
+      scenarioKey: this.activeScenario,
+      scenarioName: SCENARIOS[this.activeScenario]?.name || this.activeScenario,
+      weatherFactor: this.weatherFactor,
+      demandMultiplier: this.demandMultiplier,
+      totalSolarGenKWh: currentEntry.generationKWh || 0,
+      totalDemandKWh: currentEntry.demandKWh || 0,
+      availableSurplusKWh: currentEntry.surplusKWh || 0,
+      unmetDemandKWh: currentEntry.deficitKWh || 0,
+      recommendedPriceINR: currentEntry.recommendedPriceINR || 5.00,
+      routeStatusAB: routeABBefore ? routeABBefore.status : 'CONNECTED'
+    };
+
+    // 2. Set new scenario parameters
+    this.activeScenario = normalizedKey;
+    this.weatherFactor = scenario.weatherFactor;
+    this.weather = scenario.weatherLabel;
+    this.demandMultiplier = scenario.demandMultiplier;
+    this.activeRouteFailure = scenario.routeFailure;
+
+    // 3. Configure grid route operational statuses
+    if (scenario.routeFailure) {
+      gridNetwork.setRouteStatus(scenario.routeFailure, 'DISCONNECTED');
+      if (scenario.routeFailure === 'ROUTE-A-B') {
+        gridNetwork.setRouteStatus('ROUTE-B-A', 'DISCONNECTED');
+      }
+    } else {
+      // Reconnect default routes
+      gridNetwork.setRouteStatus('ROUTE-A-B', 'CONNECTED');
+      gridNetwork.setRouteStatus('ROUTE-B-A', 'CONNECTED');
+    }
+
+    // 4. Recalculate 24-hour generation & demand profiles for all households
+    this.households.forEach(hh => {
+      const cap = Number(hh.solarCapacityKW || 0);
+      const baseProfile = hh.baseDemandProfile || HOUSEHOLDS.find(h => h.id === hh.id)?.baseDemandProfile || [
+        0.5, 0.4, 0.4, 0.4, 0.5, 0.8, 1.4, 2.0, 1.8, 1.2, 1.0, 0.9,
+        0.9, 1.0, 1.1, 1.3, 1.8, 2.4, 3.0, 2.8, 2.2, 1.6, 1.1, 0.8
+      ];
+      hh.baseDemandProfile = baseProfile;
+
+      const hourlyGen = [];
+      const hourlyDem = [];
+      const hourlySur = [];
+      const hourlyDef = [];
+
+      for (let h = 0; h < 24; h++) {
+        const gen = calculateSolarGeneration(cap, h, this.weatherFactor);
+        const dem = Number((baseProfile[h] * this.demandMultiplier).toFixed(2));
+        const net = Number((gen - dem).toFixed(2));
+        const sur = Number(Math.max(0, net).toFixed(2));
+        const def = Number(Math.max(0, -net).toFixed(2));
+
+        hourlyGen.push(gen);
+        hourlyDem.push(dem);
+        hourlySur.push(sur);
+        hourlyDef.push(def);
+      }
+
+      hh.hourlyGeneration = hourlyGen;
+      hh.hourlyDemand = hourlyDem;
+      hh.hourlySurplus = hourlySur;
+      hh.hourlyDeficit = hourlyDef;
+    });
+
+    // 5. Recalculate hourly history totals & dynamic market pricing
+    this.recalculateHourlyHistory();
+
+    // 6. Regenerate active orders for the current hour
+    this.populateCurrentHourOrders();
+
+    // 7. Snapshot AFTER state
+    const updatedEntry = this.hourlyHistory[currentHour] || {};
+    const routeABAfter = gridNetwork.getRoute('ZONE-A', 'ZONE-B');
+    const after = {
+      scenarioKey: this.activeScenario,
+      scenarioName: scenario.name,
+      weatherFactor: this.weatherFactor,
+      demandMultiplier: this.demandMultiplier,
+      totalSolarGenKWh: updatedEntry.generationKWh || 0,
+      totalDemandKWh: updatedEntry.demandKWh || 0,
+      availableSurplusKWh: updatedEntry.surplusKWh || 0,
+      unmetDemandKWh: updatedEntry.deficitKWh || 0,
+      recommendedPriceINR: updatedEntry.recommendedPriceINR || 5.00,
+      routeStatusAB: routeABAfter ? routeABAfter.status : 'CONNECTED'
+    };
+
+    // 8. Return structured comparison
+    return {
+      success: true,
+      activeScenario: this.activeScenario,
+      scenarioName: scenario.name,
+      scenarioBadge: scenario.badge,
+      description: scenario.description,
+      isContingency: scenario.isContingency,
+      currentHour: this.currentHour,
+      currentHourLabel: `${String(this.currentHour).padStart(2, '0')}:00`,
+      before,
+      after,
+      impactSummary: {
+        solarGenDeltaKWh: Number((after.totalSolarGenKWh - before.totalSolarGenKWh).toFixed(2)),
+        demandDeltaKWh: Number((after.totalDemandKWh - before.totalDemandKWh).toFixed(2)),
+        surplusDeltaKWh: Number((after.availableSurplusKWh - before.availableSurplusKWh).toFixed(2)),
+        deficitDeltaKWh: Number((after.unmetDemandKWh - before.unmetDemandKWh).toFixed(2)),
+        priceDeltaINR: Number((after.recommendedPriceINR - before.recommendedPriceINR).toFixed(2)),
+        routeStatusAB: after.routeStatusAB
+      }
+    };
   }
 
   /**
@@ -1272,6 +1424,11 @@ class SimulationManager {
 
       companyFinance: finance,
       gridNetwork: gridNetwork.getNetworkState(),
+      activeScenario: this.activeScenario,
+      scenarioDetails: SCENARIOS[this.activeScenario] || SCENARIOS.SUNNY_DAY,
+      weatherFactor: this.weatherFactor,
+      demandMultiplier: this.demandMultiplier,
+      activeRouteFailure: this.activeRouteFailure,
       recentTrades: [...this.trades].slice(-8).reverse()
     };
   }
